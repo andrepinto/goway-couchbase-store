@@ -1,7 +1,6 @@
 package goway_couchbase_store
 
 import (
-	"fmt"
 	"github.com/andrepinto/goway/product"
 )
 
@@ -151,6 +150,6 @@ func(l *LocalProductRepository) CreateProduct() ( bool, product.Product_v1 ) {
 	return false, nil
 }
 
-func(l *LocalProductRepository) CreateClient() ( bool, product.Client ) {
+func(l *LocalProductRepository) CreateClient() ( bool, product.Client_v1 ) {
 	return false, nil
 }
