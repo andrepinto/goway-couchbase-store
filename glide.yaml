@@ -1,0 +1,4 @@
+package: github.com/andrepinto/goway-couchbase-store
+import:
+- package: github.com/couchbase/gocb
+  version: v1.1.0
