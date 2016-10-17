@@ -143,3 +143,11 @@ func(l *LocalProductRepository) GetAllClients() []product.Client_v1 {
 		},
 	}
 }
+
+func(l *LocalProductRepository) CreateProduct() ( bool, product.Product_v1 ) {
+	return false, nil
+}
+
+func(l *LocalProductRepository) CreateClient() ( bool, product.Client ) {
+	return false, nil
+}
