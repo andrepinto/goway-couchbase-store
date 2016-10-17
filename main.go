@@ -1,7 +1,7 @@
 package goway_couchbase_store
 
 import (
-	"github.com/andrepinto/goway/product"
+	. "github.com/andrepinto/goway/product"
 	"github.com/couchbase/gocb"
 	"fmt"
 )
@@ -51,27 +51,27 @@ func(l *CouchbaseRepository) CreateAndGet(){
 
 
 	l.Bucket.Upsert("product:4",
-		product.Product_v1{
+		Product_v1{
 			Type: "product",
 			Id:"4",
 			Code: "customer",
 			Name: "Customer Api",
 			Version: "1",
-			Routes: []product.Routes_v1{
-				product.Routes_v1{
+			Routes: []Routes_v1{
+				Routes_v1{
 					ListenPath: "/api/facets",
 					Verb: "GET",
 					ServiceName: "authentication",
 					Handlers: []string{"AUTHENTICATION", "METRICS"},
 					Code:"auth_by_email",
 					Roles: []string{},
-					InjectData: []product.InjectData_v1{
-						product.InjectData_v1{
+					InjectData: []InjectData_v1{
+						InjectData_v1{
 							Where:"params",
 							Code: "paramId",
 							Value: "123456789",
 						},
-						product.InjectData_v1{
+						InjectData_v1{
 							Where:"header",
 							Code: "headerId",
 							Value: "9999999999",
@@ -79,20 +79,20 @@ func(l *CouchbaseRepository) CreateAndGet(){
 					},
 					InjectGlobalData:true,
 				},
-				product.Routes_v1{
+				Routes_v1{
 					ListenPath: "/api/facets",
 					Verb: "POST",
 					ServiceName: "authentication",
 					Handlers: []string{"AUTHENTICATION", "METRICS"},
 					Code:"auth_by_email",
 					Roles: []string{},
-					InjectData: []product.InjectData_v1{
-						product.InjectData_v1{
+					InjectData: []InjectData_v1{
+						InjectData_v1{
 							Where:"params",
 							Code: "paramId",
 							Value: "123456789",
 						},
-						product.InjectData_v1{
+						InjectData_v1{
 							Where:"header",
 							Code: "headerId",
 							Value: "9999999999",
@@ -104,19 +104,19 @@ func(l *CouchbaseRepository) CreateAndGet(){
 		},
 		0)
 
-	var inUser product.Product_v1
+	var inUser Product_v1
 	l.Bucket.Get("product:4", &inUser)
 	fmt.Printf("User: %v\n", inUser)
 }
 
 
-func(l *CouchbaseRepository) GetAllProducts() []product.Product_v1 {
+func(l *CouchbaseRepository) GetAllProducts() []Product_v1 {
 
 	query := gocb.NewN1qlQuery("SELECT * FROM gateway AS product WHERE _type = $1")
 	rows, _ := l.Bucket.ExecuteN1qlQuery(query, []interface{}{"product"})
 
 	var row interface{}
-	var result []product.Product_v1
+	var result []Product_v1
 
 	rows.One(&row)
 	fmt.Printf("Query1: %+v\n", row)
@@ -131,19 +131,19 @@ func(l *CouchbaseRepository) GetAllProducts() []product.Product_v1 {
 	return result
 }
 
-func(l *CouchbaseRepository) GetAllClients() []product.Client_v1 {
-	return []product.Client_v1{
-		product.Client_v1{
+func(l *CouchbaseRepository) GetAllClients() []Client_v1 {
+	return []Client_v1{
+		Client_v1{
 			ApiPath:"12124578",
 			Product:"customer",
 			Client:"myorg",
 			RemoveApiPath: true,
 			Version: "1",
-			GlobalInjectData:[]product.InjectData_v1{
+			GlobalInjectData:[]InjectData_v1{
 
 			},
-			Routes: []product.Routes_v1{
-				product.Routes_v1{
+			Routes: []Routes_v1{
+				Routes_v1{
 					ListenPath: "/auth/byemail",
 					Verb: "GET",
 					ServiceName: "authentication-custom",
@@ -153,26 +153,26 @@ func(l *CouchbaseRepository) GetAllClients() []product.Client_v1 {
 				},
 			},
 		},
-		product.Client_v1{
+		Client_v1{
 			ApiPath:"121245782",
 			Product:"customer",
 			Client:"myorg2",
 			RemoveApiPath: true,
 			Version: "1",
-			GlobalInjectData:[]product.InjectData_v1{
-				product.InjectData_v1{
+			GlobalInjectData:[]InjectData_v1{
+				InjectData_v1{
 					Where:"url",
 					Code: "orgs",
 					Value: "tlantic",
 				},
-				product.InjectData_v1{
+				InjectData_v1{
 					Where:"url",
 					Code: "apps",
 					Value: "customer",
 				},
 			},
-			Routes: []product.Routes_v1{
-				product.Routes_v1{
+			Routes: []Routes_v1{
+				Routes_v1{
 					ListenPath: "/auth/byemail",
 					Verb: "GET",
 					ServiceName: "authentication-custom",
@@ -185,10 +185,10 @@ func(l *CouchbaseRepository) GetAllClients() []product.Client_v1 {
 	}
 }
 
-func(l *CouchbaseRepository) CreateProduct() ( bool, product.Product_v1 ) {
+func(l *CouchbaseRepository) CreateProduct(product *Product_v1) ( bool, *Product_v1 ) {
 	return false, nil
 }
 
-func(l *CouchbaseRepository) CreateClient() ( bool, product.Client_v1 ) {
+func(l *CouchbaseRepository) CreateClient(client *Client_v1) ( bool, *Client_v1 ) {
 	return false, nil
 }
