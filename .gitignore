@@ -1,5 +1,12 @@
-
+### IntelliJ
 .idea
+
+
+### Glide
+glide.lock
+vendor
+
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Go template
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
