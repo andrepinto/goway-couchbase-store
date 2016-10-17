@@ -1,6 +1,9 @@
 package goway_couchbase_store
 
-import "github.com/andrepinto/goway/product"
+import (
+	"fmt"
+	"github.com/andrepinto/goway/product"
+)
 
 type LocalProductRepository struct {
 
