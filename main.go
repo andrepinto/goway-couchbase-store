@@ -185,10 +185,10 @@ func(l *CouchbaseRepository) GetAllClients() []product.Client_v1 {
 	}
 }
 
-func(l *CouchbaseRepository) CreateProduct() ( bool, product.Product_v1 ) {
+func(l *CouchbaseRepository) CreateProduct() ( bool, *product.Product_v1 ) {
 	return false, nil
 }
 
-func(l *CouchbaseRepository) CreateClient() ( bool, product.Client_v1 ) {
+func(l *CouchbaseRepository) CreateClient() ( bool, *product.Client_v1 ) {
 	return false, nil
 }
