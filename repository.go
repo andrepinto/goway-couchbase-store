@@ -1,6 +1,8 @@
 package goway_couchbase_store
 
-import "github.com/andrepinto/goway/product"
+import (
+	"github.com/andrepinto/goway/product"
+)
 
 type LocalProductRepository struct {
 
@@ -142,4 +144,12 @@ func(l *LocalProductRepository) GetAllClients() []product.Client_v1 {
 			},
 		},
 	}
+}
+
+func(l *LocalProductRepository) CreateProduct() ( bool, *product.Product_v1 ) {
+	return false, nil
+}
+
+func(l *LocalProductRepository) CreateClient() ( bool, *product.Client_v1 ) {
+	return false, nil
 }
