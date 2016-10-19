@@ -2,3 +2,5 @@ package: github.com/andrepinto/goway-couchbase-store
 import:
 - package: github.com/couchbase/gocb
   version: v1.1.0
+- package: github.com/twinj/uuid
+  version: 0.10.0
